@@ -315,8 +315,8 @@ class _CalendarState extends State<Calendar> {
         icon: Icon(Icons.chevron_right),
       );
     } else {
-      leftArrow = Container();
-      rightArrow = Container();
+      leftArrow = SizedBox.shrink();
+      rightArrow = SizedBox.shrink();
     }
 
     if (!widget.hideTodayIcon) {
@@ -325,7 +325,7 @@ class _CalendarState extends State<Calendar> {
         onTap: resetToToday,
       );
     } else {
-      todayIcon = Container();
+      todayIcon = SizedBox.shrink();
     }
 
     if (widget.datePickerType != null &&
@@ -407,17 +407,17 @@ class _CalendarState extends State<Calendar> {
         },
       );
     } else {
-      jumpDateIcon = Container();
+      jumpDateIcon = SizedBox.shrink();
     }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        leftArrow ?? Container(),
+        leftArrow ?? SizedBox.shrink(),
         Expanded(
           child: Column(
             children: <Widget>[
-              todayIcon ?? Container(),
+              todayIcon ?? SizedBox.shrink(),
               Text(
                 displayMonth,
                 style: widget.displayMonthTextStyle ??
@@ -428,8 +428,8 @@ class _CalendarState extends State<Calendar> {
             ],
           ),
         ),
-        jumpDateIcon ?? Container(),
-        rightArrow ?? Container(),
+        jumpDateIcon ?? SizedBox.shrink(),
+        rightArrow ?? SizedBox.shrink(),
       ],
     );
   }
@@ -437,8 +437,8 @@ class _CalendarState extends State<Calendar> {
   Widget get calendarGridView {
     return Container(
       child: SimpleGestureDetector(
-        onSwipeUp: _onSwipeUp,
-        onSwipeDown: _onSwipeDown,
+        // onSwipeUp: _onSwipeUp,
+        // onSwipeDown: _onSwipeDown,
         onSwipeLeft: _onSwipeLeft,
         onSwipeRight: _onSwipeRight,
         swipeConfig: SimpleSwipeConfig(
@@ -609,7 +609,7 @@ class _CalendarState extends State<Calendar> {
         ),
       );
     } else {
-      return Container();
+      return SizedBox.shrink();
     }
   }
 
@@ -717,7 +717,7 @@ class _CalendarState extends State<Calendar> {
                 },
                 itemCount: _selectedEvents!.length,
               )
-            : Container(),
+            : SizedBox.shrink(),
       );
     } else {
       // eventListBuilder is not null
