@@ -307,11 +307,17 @@ class _CalendarState extends State<Calendar> {
 
     if (!widget.hideArrows) {
       leftArrow = PlatformIconButton(
-        onPressed: isExpanded ? () => previousMonth(true) : previousWeek,
+        onPressed: isExpanded
+            ? () =>
+                widget.locale == 'ar' ? nextMonth(true) : previousMonth(true)
+            : previousWeek,
         icon: Icon(Icons.chevron_left),
       );
       rightArrow = PlatformIconButton(
-        onPressed: isExpanded ? () => nextMonth(true) : nextWeek,
+        onPressed: isExpanded
+            ? () =>
+                widget.locale == 'ar' ? previousMonth(true) : nextMonth(true)
+            : nextWeek,
         icon: Icon(Icons.chevron_right),
       );
     } else {
@@ -439,8 +445,8 @@ class _CalendarState extends State<Calendar> {
       child: SimpleGestureDetector(
         // onSwipeUp: _onSwipeUp,
         // onSwipeDown: _onSwipeDown,
-        onSwipeLeft: _onSwipeLeft,
-        onSwipeRight: _onSwipeRight,
+        onSwipeLeft: widget.locale == 'ar' ? _onSwipeRight : _onSwipeLeft,
+        onSwipeRight: widget.locale == 'ar' ? _onSwipeLeft : _onSwipeRight,
         swipeConfig: SimpleSwipeConfig(
           verticalThreshold: 10.0,
           horizontalThreshold: 40.0,
@@ -947,13 +953,13 @@ class _CalendarState extends State<Calendar> {
     });
   }
 
-  void _onSwipeUp() {
-    if (isExpanded) toggleExpanded();
-  }
+  // void _onSwipeUp() {
+  //   if (isExpanded) toggleExpanded();
+  // }
 
-  void _onSwipeDown() {
-    if (!isExpanded) toggleExpanded();
-  }
+  // void _onSwipeDown() {
+  //   if (!isExpanded) toggleExpanded();
+  // }
 
   void _onSwipeRight() {
     if (isExpanded) {
@@ -1011,11 +1017,11 @@ class _CalendarState extends State<Calendar> {
       }
     }
     // Check if the selected day falls into the last month. If this is the case,
-    // then we need to additionaly check, if a day in last year was selected.
+    // then we need to additionally check, if a day in last year was selected.
     if (_selectedDate.month < day.month) {
       // Day in next last selected? Switch to next month.
       if (_selectedDate.year > day.year) {
-        // _launchDateSelectionCallback was already called befor. That's why set the
+        // _launchDateSelectionCallback was already called before. That's why set the
         // "launchCallback" parameter to false, to avoid calling the callback twice.
         previousMonth(false);
       } else {
@@ -1048,7 +1054,7 @@ class _CalendarState extends State<Calendar> {
     // This avoids double executing the callback when selecting a date in the same month.
     if (widget.onMonthChanged != null && day.month != _selectedDate.month ||
         day.year != _selectedDate.year) {
-      widget.onMonthChanged!(day);
+      widget.onMonthChanged?.call(day);
     }
   }
 
