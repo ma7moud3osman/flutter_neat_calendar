@@ -6,7 +6,8 @@ enum MultiDaySegement {
   last,
 }
 
-class NeatCleanCalendarEvent {
+class NeatCleanCalendarEvent<T> {
+  T? data;
   String summary;
   String description;
   String location;
@@ -23,6 +24,7 @@ class NeatCleanCalendarEvent {
 
   NeatCleanCalendarEvent(
     this.summary, {
+    this.data,
     this.description = '',
     this.location = '',
     required this.startTime,
