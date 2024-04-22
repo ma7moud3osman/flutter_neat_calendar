@@ -13,6 +13,7 @@ class NeatCleanCalendarEvent<T> {
   String location;
   DateTime startTime;
   DateTime endTime;
+  DateTime? endDate;
   Color? color;
   bool isAllDay;
   bool isMultiDay;
@@ -29,6 +30,7 @@ class NeatCleanCalendarEvent<T> {
     this.location = '',
     required this.startTime,
     required this.endTime,
+    this.endDate,
     this.color = Colors.blue,
     this.isAllDay = false,
     this.isMultiDay = false,
