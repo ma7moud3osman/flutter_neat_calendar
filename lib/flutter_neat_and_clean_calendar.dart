@@ -5,12 +5,13 @@ library flutter_neat_and_clean_calendar;
 import 'package:flutter/material.dart';
 import 'package:flutter_neat_and_clean_calendar/date_picker_config.dart';
 import 'package:flutter_neat_and_clean_calendar/platform_widgets.dart';
-import './date_utils.dart';
-import './simple_gesture_detector.dart';
-import './calendar_tile.dart';
-import './neat_and_clean_calendar_event.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+
+import './calendar_tile.dart';
+import './date_utils.dart';
+import './neat_and_clean_calendar_event.dart';
+import './simple_gesture_detector.dart';
 
 // Export NeatCleanCalendarEvent for using it in the application
 export './neat_and_clean_calendar_event.dart';
@@ -559,7 +560,7 @@ class _CalendarState extends State<Calendar> {
 
   TextStyle? configureDateStyle(monthStarted, monthEnded) {
     TextStyle? dateStyles;
-    final TextStyle? body1Style = Theme.of(context).textTheme.bodyText2;
+    final TextStyle? body1Style = Theme.of(context).textTheme.bodyMedium;
 
     if (isExpanded) {
       final TextStyle body1StyleDisabled = body1Style!.copyWith(
@@ -692,7 +693,7 @@ class _CalendarState extends State<Calendar> {
                                   Text(event.summary,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .subtitle2),
+                                          .titleSmall),
                                   SizedBox(
                                     height: 10.0,
                                   ),
@@ -737,8 +738,8 @@ class _CalendarState extends State<Calendar> {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(start, style: Theme.of(context).textTheme.bodyText1),
-        Text(end, style: Theme.of(context).textTheme.bodyText1),
+        Text(start, style: Theme.of(context).textTheme.bodyLarge),
+        Text(end, style: Theme.of(context).textTheme.bodyLarge),
       ],
     );
   }
@@ -755,7 +756,7 @@ class _CalendarState extends State<Calendar> {
         children: [
           Text(
             widget.allDayEventText,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ],
       );
@@ -780,8 +781,8 @@ class _CalendarState extends State<Calendar> {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(start, style: Theme.of(context).textTheme.bodyText1),
-        Text(end, style: Theme.of(context).textTheme.bodyText1),
+        Text(start, style: Theme.of(context).textTheme.bodyLarge),
+        Text(end, style: Theme.of(context).textTheme.bodyLarge),
       ],
     );
   }
